@@ -3,7 +3,7 @@
         leave="right"
         @after-leave="$emit('close')"
         v-show="visible">
-        <div class="box quick-view is-marginless"
+        <div class="box quick-view m-0"
             :class="{ 'with-bookmarks': bookmarks }">
             <a class="delete is-pulled-right"
                 @click="visible = false"/>
@@ -13,15 +13,13 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 import { Slide } from '@enso-ui/transitions';
+import { useStore } from '../utils/pinia';
 
 export default {
     name: 'QuickView',
 
     components: { Slide },
-
-    emits: ['close'],
 
     data: () => ({
         visible: true,
@@ -30,17 +28,18 @@ export default {
     emits: ['close'],
 
     computed: {
-        ...mapGetters('preferences', ['bookmarks']),
+        bookmarks() {
+            return useStore('preferences').bookmarks;
+        },
     },
 };
 </script>
 
 <style lang="scss">
-@import '@enso-ui/themes/bulma/variables';
     .quick-view {
         border-radius: 0;
         position: fixed;
-        top: $navbar-height;
+        top: var(--bulma-navbar-height);
         right: 0;
         bottom: 0;
         z-index: 5;
