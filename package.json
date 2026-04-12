@@ -18,15 +18,15 @@
     "url": "https://github.com/@enso-ui/quick-view/issues"
   },
   "homepage": "https://github.com/@enso-ui/quick-view#readme",
-  "dependencies": {
-    "@enso-ui/transitions": "^2.1.0",
-    "@enso-ui/ui": "^7.1.0"
-  },
   "peerDependencies": {
+    "@enso-ui/transitions": "^2.1.0",
+    "@enso-ui/ui": "^7.1.0",
     "bulma": "^1.0.4",
     "pinia": "^3.0.3"
   },
   "devDependencies": {
+    "@enso-ui/transitions": "^2.1.0",
+    "@enso-ui/ui": "^7.1.0",
     "bulma": "^1.0.4",
     "pinia": "^3.0.3"
   }
