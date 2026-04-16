@@ -14,7 +14,7 @@
 
 <script>
 import { Slide } from '@enso-ui/transitions';
-import { useStore } from '../utils/pinia';
+import { preferences } from '@enso-ui/ui/src/pinia/preferences';
 
 export default {
     name: 'QuickView',
@@ -29,7 +29,7 @@ export default {
 
     computed: {
         bookmarks() {
-            return useStore('preferences').bookmarks;
+            return preferences().bookmarks;
         },
     },
 };
