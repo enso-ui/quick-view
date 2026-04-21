@@ -1,33 +1,33 @@
 {
-  "name": "@enso-ui/quick-view",
-  "version": "3.2.4",
-  "description": "QuickView",
-  "main": "bulma/index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/@enso-ui/quick-view.git"
-  },
-  "keywords": [
-    "accessories",
-    "quick-view",
-    "vue"
-  ],
-  "author": "Adrian Ocneanu <aocneanu@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/@enso-ui/quick-view/issues"
-  },
-  "homepage": "https://github.com/@enso-ui/quick-view#readme",
-  "peerDependencies": {
-    "@enso-ui/transitions": "^2.1.0",
-    "@enso-ui/ui": "^7.1.0",
-    "bulma": "^1.0.4",
-    "pinia": "^3.0.3"
-  },
-  "devDependencies": {
-    "@enso-ui/transitions": "^2.1.0",
-    "@enso-ui/ui": "^7.1.0",
-    "bulma": "^1.0.4",
-    "pinia": "^3.0.3"
-  }
+    "name": "@enso-ui/quick-view",
+    "version": "3.2.4",
+    "description": "Slide-out quick-view panel for Enso UI.",
+    "main": "bulma/index.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/@enso-ui/quick-view.git"
+    },
+    "keywords": [
+        "accessories",
+        "quick-view",
+        "vue"
+    ],
+    "author": "Adrian Ocneanu <aocneanu@gmail.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/@enso-ui/quick-view/issues"
+    },
+    "homepage": "https://github.com/@enso-ui/quick-view#readme",
+    "peerDependencies": {
+        "@enso-ui/transitions": "^2.1.0",
+        "@enso-ui/ui": "^7.1.0",
+        "bulma": "^1.0.4",
+        "pinia": "^3.0.3"
+    },
+    "devDependencies": {
+        "@enso-ui/transitions": "^2.1.0",
+        "@enso-ui/ui": "^7.1.0",
+        "bulma": "^1.0.4",
+        "pinia": "^3.0.3"
+    }
 }
