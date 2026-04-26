@@ -47,7 +47,7 @@ export default {
         display: block;
 
         &.with-bookmarks {
-            top: 82px;
+            top: calc(var(--bulma-navbar-height) + var(--enso-bookmarks-height));
         }
 
         @media screen and (min-width: 1280px) {
