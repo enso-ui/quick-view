@@ -1,6 +1,6 @@
 {
     "name": "@enso-ui/quick-view",
-    "version": "3.2.5",
+  "version": "3.2.6",
     "description": "Slide-out quick-view panel for Enso UI.",
     "main": "bulma/index.js",
     "repository": {

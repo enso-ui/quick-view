@@ -32,6 +32,22 @@ export default {
             return preferences().bookmarks;
         },
     },
+
+    mounted() {
+        window.addEventListener('keydown', this.closeOnEscape);
+    },
+
+    beforeUnmount() {
+        window.removeEventListener('keydown', this.closeOnEscape);
+    },
+
+    methods: {
+        closeOnEscape({ key }) {
+            if (key === 'Escape') {
+                this.visible = false;
+            }
+        },
+    },
 };
 </script>
 
@@ -45,6 +61,7 @@ export default {
         z-index: 5;
         flex: 1 1 0%;
         display: block;
+        background-color: var(--enso-page-background);
 
         &.with-bookmarks {
             top: calc(var(--bulma-navbar-height) + var(--enso-bookmarks-height));
