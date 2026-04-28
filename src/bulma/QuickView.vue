@@ -1,89 +1,104 @@
 <template>
-    <slide enter="right"
-        leave="right"
-        @after-leave="$emit('close')"
-        v-show="visible">
-        <div class="box quick-view m-0"
-            :class="{ 'with-bookmarks': bookmarks }">
-            <a class="delete is-pulled-right"
-                @click="visible = false"/>
-            <slot/>
-        </div>
-    </slide>
+    <teleport to="body">
+        <slide enter="right"
+            leave="right"
+            @after-leave="emitClose">
+            <div class="quick-view-wrapper columns is-justify-content-flex-end"
+                v-show="visible">
+                <div class="column"
+                    :class="$attrs.class">
+                    <div class="box quick-view">
+                        <a class="delete is-pulled-right"
+                            @click="close"/>
+                        <slot/>
+                    </div>
+                </div>
+            </div>
+        </slide>
+    </teleport>
 </template>
 
 <script>
 import { Slide } from '@enso-ui/transitions';
-import { preferences } from '@enso-ui/ui/src/pinia/preferences';
 
 export default {
     name: 'QuickView',
 
     components: { Slide },
 
+    inheritAttrs: false,
+
     data: () => ({
+        closeTimer: null,
+        closed: false,
         visible: true,
     }),
 
     emits: ['close'],
-
-    computed: {
-        bookmarks() {
-            return preferences().bookmarks;
-        },
-    },
 
     mounted() {
         window.addEventListener('keydown', this.closeOnEscape);
     },
 
     beforeUnmount() {
+        clearTimeout(this.closeTimer);
         window.removeEventListener('keydown', this.closeOnEscape);
     },
 
     methods: {
+        close() {
+            if (this.closed) {
+                return;
+            }
+
+            this.visible = false;
+            this.closeTimer = setTimeout(this.emitClose, 350);
+        },
         closeOnEscape({ key }) {
             if (key === 'Escape') {
-                this.visible = false;
+                this.close();
             }
+        },
+        emitClose() {
+            if (this.closed) {
+                return;
+            }
+
+            this.closed = true;
+            clearTimeout(this.closeTimer);
+            this.closeTimer = null;
+            this.$emit('close');
         },
     },
 };
 </script>
 
 <style lang="scss">
-    .quick-view {
-        border-radius: 0;
+    .quick-view-wrapper.columns {
         position: fixed;
-        top: var(--bulma-navbar-height);
-        right: 0;
-        bottom: 0;
-        z-index: 5;
-        flex: 1 1 0%;
-        display: block;
-        background-color: var(--enso-page-background);
+        inset: 0;
+        z-index: 1001;
+        pointer-events: none;
 
-        &.with-bookmarks {
-            top: calc(var(--bulma-navbar-height) + var(--enso-bookmarks-height));
+        > .column {
+            height: 100%;
+            pointer-events: none;
         }
 
-        @media screen and (min-width: 1280px) {
-            width: 30%;
-        }
-
-        @media screen and (min-width: 1024px) and (max-width: 1279px) {
-            width: 45%;
-        }
-
-        @media screen and (min-width: 768px) and (max-width: 1023px) {
-            width: 66%;
-        }
-
-        @media screen and (max-width: 767px) {
+        .quick-view.box {
+            height: 100vh;
+            border-radius: 0;
+            position: relative;
             width: 100%;
+            display: block;
+            pointer-events: auto;
+    
+            .delete {
+                top: 1em;
+                right: 1em;
+                position: absolute;
+                z-index: 2;
+            }
         }
-
-        transition: top 0.5s;
-        -webkit-transition: top 0.5s;
     }
 </style>
